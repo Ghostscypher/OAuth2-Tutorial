@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -31,7 +32,7 @@ class AuthController extends Controller
             'email' => $validated['email'],
             'name' => $validated['name'],
             'email_validated_at' => now(),
-            'password' => $validated['password']
+            'password' => Hash::make($validated['password']),
         ]);
 
         return redirect('login')->withErrors(['success' => 'Successfully registered.']);

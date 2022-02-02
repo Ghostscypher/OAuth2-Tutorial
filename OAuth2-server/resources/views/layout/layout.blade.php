@@ -25,6 +25,14 @@
             margin: auto;
         }
 
+        .container > form {
+            margin: auto;
+        }
+
+        .form-input {
+            padding: .2em;
+        }
+
         .error {
             font-size: 1em;
             color: red;
