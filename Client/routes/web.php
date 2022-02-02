@@ -48,3 +48,7 @@ Route::post('/login/without-socialite-pkce', [AuthController::class, 'loginWithO
 // Oauth callbacks
 Route::get('oauth/callback/without-socialite', [AuthController::class, 'oauthCallbackWithoutSocialite'])->name('oauth.callback.without-socialite');
 Route::get('oauth/callback/without-socialite-pkce', [AuthController::class, 'oauthCallbackWithoutSocialiteWithPKCE'])->name('oauth.callback.without-socialite-pkce');
+
+// Implicit grant
+Route::post('login/implicit', [AuthController::class, 'loginWithOauth2Implicit'])->name('login.post.implicit');
+Route::get('oauth/callback/implicit', [AuthController::class, 'oauthCallbackImplicit'])->name('oauth.callback.without-socialite');

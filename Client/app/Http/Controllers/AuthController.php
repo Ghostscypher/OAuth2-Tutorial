@@ -105,10 +105,28 @@ class AuthController extends Controller
         dd($user->json(), $response->json());
     }
 
+    public function loginWithOauth2Implicit(){
+        session()->put('state', $state = Str::random(40));
+
+        $query = http_build_query([
+            'client_id' => '95814ae5-6381-4529-9c33-5572050e8ebe',
+            'redirect_uri' => 'http://client.test/oauth/callback/implicit',
+            'response_type' => 'token',
+            'scope' => '*',
+            'state' => $state,
+        ]);
+
+        return redirect('http://oauth2-server.test/oauth/authorize?' . $query);
+    }
+
+    public function oauthCallbackImplicit(Request $request){
+        dd('success');
+    }
+
     private function getUser($json_response){
         $token = $json_response['access_token'];
 
-        return Http::asForm()->withHeaders([
+        return Http::withHeaders([
                 'Accept' => 'application/json',
                 'Authorization' => "Bearer $token",
         ])->get('http://oauth2-server.test/api/user');

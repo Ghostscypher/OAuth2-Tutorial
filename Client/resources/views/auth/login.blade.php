@@ -33,4 +33,10 @@
     <button type="submit">Login with Oauth2-Server without using Laravel Socialite with PKCE</button>
 </form>
 
+<form action="{{route('login.post.implicit')}}" method="POST">
+    @csrf
+    <br>
+    <button type="submit">Login with Oauth2-Server Implicit grant</button>
+</form>
+
 @endsection
