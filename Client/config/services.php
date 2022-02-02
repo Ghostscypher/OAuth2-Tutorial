@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'oauth2_server' => [
+        'client_id' => env('OAUTH2_SERVER_CLIENT_ID'),
+        'client_secret' => env('OAUTH2_SERVER_CLIENT_SECRET'),
+        'redirect' => 'oauth/callback',
+    ],
+
 ];
