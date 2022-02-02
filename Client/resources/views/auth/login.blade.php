@@ -20,4 +20,17 @@
     <br>
     Don't have an account? <a href="{{route('register')}}">Register here</a>
 </form>
+
+<form action="{{route('login.post.without-socialite')}}" method="POST">
+    @csrf
+    <br>
+    <button type="submit">Login with Oauth2-Server without using Laravel Socialite</button>
+</form>
+
+<form action="{{route('login.post.without-socialite-pkce')}}" method="POST">
+    @csrf
+    <br>
+    <button type="submit">Login with Oauth2-Server without using Laravel Socialite with PKCE</button>
+</form>
+
 @endsection

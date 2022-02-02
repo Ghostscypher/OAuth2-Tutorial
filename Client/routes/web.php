@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +37,14 @@ Route::post('register', [AuthController::class, 'loginWithOauth2'])->name('regis
 
 // Oauth callback
 Route::get('oauth/callback', [AuthController::class, 'oauthCallback'])->name('oauth.callback');
+
+
+// Without socialite
+Route::post('/login/without-socialite', [AuthController::class, 'loginWithOauth2WithoutSocialite'])->name('login.post.without-socialite');
+
+// Login implementing PKCE
+Route::post('/login/without-socialite-pkce', [AuthController::class, 'loginWithOauth2WithoutSocialiteWithPKCE'])->name('login.post.without-socialite-pkce');
+
+// Oauth callbacks
+Route::get('oauth/callback/without-socialite', [AuthController::class, 'oauthCallbackWithoutSocialite'])->name('oauth.callback.without-socialite');
+Route::get('oauth/callback/without-socialite-pkce', [AuthController::class, 'oauthCallbackWithoutSocialiteWithPKCE'])->name('oauth.callback.without-socialite-pkce');
