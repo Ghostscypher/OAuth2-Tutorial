@@ -86,7 +86,7 @@ class AuthController extends Controller
 
         // Code is valid
         Cache::forget($request->user_code);
-        Cache::put($request->user_code, $request->user()->id, 600);
+        Cache::put($request->user_code, $request->user()->id, 60);
 
         // Instead of this we should ideally show a consent screen to allow the user to authorize
         // the client similar to authorization flow
