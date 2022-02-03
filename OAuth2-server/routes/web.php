@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +38,12 @@ Route::get('dashboard', function(){
 
 Route::post('login', [AuthController::class, 'login'])->name('login.post');
 Route::post('register', [AuthController::class, 'register'])->name('register.post');
+
+// Device grant flow
+Route::get('oauth/device/code', [AuthController::class, 'deviceGrantGenerateCode']);
+Route::get('oauth/device/activate', [AuthController::class, 'deviceGrantActivate'])
+    ->middleware('auth')
+    ->name('oauth.device.activate');
+
+Route::post('oauth/device/token', [AuthController::class, 'deviceGrantGetToken'])
+    ->name('oauth.device.token')->withoutMiddleware(VerifyCsrfToken::class);
